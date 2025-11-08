@@ -1,5 +1,4 @@
 import random
-from random import choice
 
 armorList = {
     "helmets": {
@@ -60,16 +59,20 @@ def showArmor(armor):
     for key, name, in armor.items():
         print(f"{key}: {name}")
 
-def showWeapons(weapons):
-    for key, name, in weapons.items():
+def showWeapons(weapon):
+    for key, name, in weapon.items():
         print(f"{key}: {name}")
 
-def showWeaponsList(weaponsList):
+
+def showWeaponsList(weaponsList, money, weapon, armor):
     print("\n=== BLACKSMITH'S WEAPONS ===\n")
+    print(" ********* you have", money, " golds\n")
     print(f"{'No.':<5} {'Weapon':<25} {'DMG':>5} {'Crit':>8} {'Speed':>8} {'Price':>10}")
     print("-" * 70)
+    print(f"{"0":<5} {"To exit":<25}")
 
     counter = 1
+    weapon_list = []
     for weapon_type, materials in weaponsList.items():
         for material, stats in materials.items():
             weapon_list.append({
@@ -82,14 +85,110 @@ def showWeaponsList(weaponsList):
             price = f"{stats['price']} golds"
             print(f"{counter:<5} {weapon_name:<25} {stats['dmg']:>5} {crit:>8} {stats['attack_speed']:>8} {price:>15}")
             counter += 1
-    chosenWeapon = int(input(f"\n your chose: "))
-    print(weapon_list[chosenWeapon])
 
-def loadBlacksmith(money, armor, weapons):
+    chosenWeapon = int(input(f"\n Which one you take?: "))
+
+    if chosenWeapon == 0:
+        return money, armor, weapon
+
+    chosenWeapon -= 1
+
+    if money >= weapon_list[chosenWeapon]["stats"]["price"]:
+        money -= weapon_list[chosenWeapon]["stats"]["price"]
+        weapon = weapon_list[chosenWeapon]
+        print("Your weapon is: ", weapon)
+        input("Press Enter to continue...")
+        return money, armor, weapon
+    else:
+        print("You don't have enough golds.")
+        input("Press Enter to continue...")
+        return showWeaponsList(weaponsList, money, weapon, armor)
+
+
+def showCurrentArmor(armor, weapon):
+    print("\n=== YOUR CURRENT ARMOR ===\n")
+    print(f"{'Slot':<15} {'Item':<25} {'Defense':>10}")
+    print("-" * 50)
+
+    total_defense = 0
+    for slot, item in armor.items():
+        if item is not None:
+            item_name = f"{item['material'].capitalize()} {item['type']}"
+            defense = item['stats']['defense']
+            total_defense += defense
+            print(f"{slot.capitalize():<15} {item_name:<25} {defense:>10}")
+        else:
+            print(f"{slot.capitalize():<15} {'Empty':<25} {0:>10}")
+
+    print("-" * 50)
+    print(f"{'TOTAL DEFENSE:':<40} {total_defense:>10}")
+    print("\n" + "=" * 50)
+    print(f"{'Weapon':<15} {'Item':<25}")
+    print("-" * 50)
+
+    if weapon["type"] is not None:
+        weapon_name = f"{weapon['material'].capitalize()} {weapon['type']}"
+        print(f" {weapon_name:<35}")
+        print(f"  • Damage: {weapon['stats']['dmg']}")
+        print(f"  • Crit chance: {weapon['stats']['crit_chance']}%")
+        print(f"  • Attack speed: {weapon['stats']['attack_speed']}")
+    else:
+        print(f"  • No weapon equipped")
+    print()
+
+def showArmorList(armorList, money, weapon, armor):
+    print("\n=== BLACKSMITH'S ARMOR ===\n")
+    print(" ********* you have", money, " golds\n")
+    print(f"{'No.':<5} {'Armor':<25} {'Defense':>10} {'Price':>10}")
+    print("-" * 70)
+    print(f"{"0":<5} {"To exit":<25}")
+
+    counter = 1
+    armor_list = []
+
+    for armor_type, materials in armorList.items():
+        for material, stats in materials.items():
+            armor_list.append({
+                "type": armor_type,
+                "material": material,
+                "stats": stats
+            })
+            armor_name = f"{material.capitalize()} {armor_type}"
+            defense = stats['defense']
+            price = f"{stats['price']} golds"
+            print(f"{counter:<5} {armor_name:<25} {defense:>10} {price:>15}")
+            counter += 1
+
+    chosenArmor = int(input(f"\n Which one you take?: "))
+
+    if chosenArmor == 0:
+        return money, armor, weapon
+
+    chosenArmor -= 1
+
+    if money >= armor_list[chosenArmor]["stats"]["price"]:
+        money -= armor_list[chosenArmor]["stats"]["price"]
+        armor = armor_list[chosenArmor]
+        showCurrentArmor(armor, weapon)
+        input("Press Enter to continue...")
+        return money, armor, weapon
+    else:
+        print("You don't have enough golds.")
+        input("Press Enter to continue...")
+        return showArmorList(armorList, money, weapon, armor)
+
+
+def loadBlacksmith(money, armor, weapon):
     print("\n\n\n\n"
           " you are in blacksmith\n"
-          " ********* you have", money, " golds\n"
-          " ********* your armor :", showArmor(armor))
+          " ********* you have", money, " golds\n")
+    showCurrentArmor(armor, weapon)
+
+
+    if weapon["type"] is not None:
+        print(" ********* your weapon is", weapon["material"], weapon["type"])
+    else:
+        print(" You don't have any weapon, go buy one!")
 
     print("chose options: \n"
           "1. Weapons\n"
@@ -100,18 +199,19 @@ def loadBlacksmith(money, armor, weapons):
     choice = int(input("\n"))
     match choice:
         case 1:
-            showWeaponsList(weaponsList)
-            return loadBlacksmith(money, armor, weapons)
+            money, armor, weapon = showWeaponsList(weaponsList, money, weapon, armor)
+            return loadBlacksmith(money, armor, weapon)
         case 2:
-            return loadBlacksmith(money, armor, weapons)
+            money, armor, weapon = showArmorList(armorList, money, weapon, armor)
+            return loadBlacksmith(money, armor, weapon)
         case 3:
             print("\nBlack smith: 'Welcome little guy! Need me?'")
             print("today's quote: ", todaysQuote)
             input("\nPress Enter to continue...")
-            return loadBlacksmith(money, armor, weapons)
+            return loadBlacksmith(money, armor, weapon)
         case 4:
-            return money, armor, weapons
+            return money, armor, weapon
         case _:
             print("Invalid option!")
             input("Press Enter to continue...")
-            return loadBlacksmith(money, armor, weapons)
+            return loadBlacksmith(money, armor, weapon)

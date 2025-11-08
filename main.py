@@ -10,14 +10,15 @@ armor = {
     "legins": None,
     "boots": None,
 }
-weapons = {
-    "sword": None,
-    "waraxe": None,
+weapon = {
+    "type": None,
+    "material": None,
+    "stats" : {"dmg": None, "crit_chance": None, "attack_speed": None,}
 }
 
 
 def loadLobby():
-    global HP, money
+    global HP, money, armor, weapon
     print("\n\n\n\n"
           " you are in lobby\n"
           " ********* your HP is: ", HP, "/100\n"
@@ -37,7 +38,9 @@ def loadLobby():
             #case 2:
             #    return loadArena()
             case 3:
-                return loadBlacksmith(money, armor, weapons)
+                money, armor, weapon = loadBlacksmith(money, armor, weapon)
+                print(money, armor, weapon)
+                return loadLobby()
             case _:
                 print("Neplatná hodnota")
                 return loadLobby()
