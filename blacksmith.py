@@ -147,6 +147,7 @@ def showArmorList(armorList, money, weapon, armor):
     armor_list = []
 
     for armor_type, materials in armorList.items():
+        print("\n")
         for material, stats in materials.items():
             armor_list.append({
                 "type": armor_type,
