@@ -17,9 +17,9 @@ def loadPub(HP, money):
     todaysQuote = tavern_sayings[random.randint(0, len(tavern_sayings) - 1)]
 
     print("\n\n\n\n"
-          " You are in Pub\n"
-          " ********* Your HP is: ", HP, "/100\n"
-          " ********* Your Money is: ", money, "\n")
+          " ====== You are in Pub ======\n\n"
+          " ====== Your HP is: ", HP, "/100 ======\n"
+          " ====== Your Money is: ", money, " ======\n")
     print("What do you want to do?\n"
           "1. Drink beer (restore 20 HP) - 10 gold\n"
           "2. Drink wine (restore 50 HP) - 25 gold\n"

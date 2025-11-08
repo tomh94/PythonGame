@@ -20,9 +20,9 @@ weapon = {
 def loadLobby():
     global HP, money, armor, weapon
     print("\n\n\n\n"
-          " you are in lobby\n"
-          " ********* your HP is: ", HP, "/100\n"
-          " ********* your Money is: ", money, "\n")
+          " ====== you are in lobby ======\n\n"
+          " ====== your HP is: ", HP, "/100 ======\n"
+          " ====== your Money is: ", money, " ======\n")
     print("chose options: \n"
           "1. Pub\n"
           "2. Arena\n"

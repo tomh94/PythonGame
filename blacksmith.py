@@ -1,13 +1,13 @@
 import random
 
 armorList = {
-    "helmets": {
+    "helmet": {
         "bronze": {"defense": 2, "price": 30},
         "iron": {"defense": 3, "price": 50},
         "golden": {"defense": 4, "price": 120},
         "diamond": {"defense": 6, "price": 200}
     },
-    "chestplates": {
+    "chestplate": {
         "bronze": {"defense": 4, "price": 50},
         "iron": {"defense": 6, "price": 80},
         "golden": {"defense": 8, "price": 180},
@@ -96,7 +96,7 @@ def showWeaponsList(weaponsList, money, weapon, armor):
     if money >= weapon_list[chosenWeapon]["stats"]["price"]:
         money -= weapon_list[chosenWeapon]["stats"]["price"]
         weapon = weapon_list[chosenWeapon]
-        print("Your weapon is: ", weapon)
+        print("Your weapon is: ", weapon["material"], "", weapon["type"])
         input("Press Enter to continue...")
         return money, armor, weapon
     else:
@@ -123,8 +123,7 @@ def showCurrentArmor(armor, weapon):
     print("-" * 50)
     print(f"{'TOTAL DEFENSE:':<40} {total_defense:>10}")
     print("\n" + "=" * 50)
-    print(f"{'Weapon':<15} {'Item':<25}")
-    print("-" * 50)
+    print(f"{'Weapon':<15}")
 
     if weapon["type"] is not None:
         weapon_name = f"{weapon['material'].capitalize()} {weapon['type']}"
@@ -134,6 +133,7 @@ def showCurrentArmor(armor, weapon):
         print(f"  • Attack speed: {weapon['stats']['attack_speed']}")
     else:
         print(f"  • No weapon equipped")
+    print("-" * 50)
     print()
 
 def showArmorList(armorList, money, weapon, armor):
@@ -168,7 +168,8 @@ def showArmorList(armorList, money, weapon, armor):
 
     if money >= armor_list[chosenArmor]["stats"]["price"]:
         money -= armor_list[chosenArmor]["stats"]["price"]
-        armor = armor_list[chosenArmor]
+        armorSlot = armor_list[chosenArmor]["type"]
+        armor[armorSlot] = armor_list[chosenArmor]
         showCurrentArmor(armor, weapon)
         input("Press Enter to continue...")
         return money, armor, weapon
