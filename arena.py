@@ -1,3 +1,6 @@
+import time
+import random
+
 from blacksmith import showCurrentArmor
 
 class Enemy:
@@ -124,22 +127,105 @@ def loadArena(player):
 
 def calculateDefense(player):
     totalDefense = 0
-    for armor in player['armor']:
-        totalDefense += armor['defense']
+    for slot, armor in player['armor'].items():
+        if armor is not None:
+            totalDefense += armor['stats']['defense']
+    player["totalDefense"] = totalDefense
     return player
 
 
 def fightEnemy(enemy, player):
-    print("\n" + "=" * 50)
-    print("⚔️  Fight starts! ⚔️")
-    print("=" * 50)
-    print(f"Your stats: (HP: {player["HP"]}, DMG: {player["weapon"]["stats"]["dmg"]}, DEF: {player['totalDefense']})")
-    print("VS")
-    print(f"Enemy (HP: {enemy.health}, DMG: {enemy.damage}, DEF: {enemy.defense})")
+    reward = enemy.loot
+    player = calculateDefense(player)
 
-    try :
-        input("\nStiskni ENTER pro start...")
-    except KeyboardInterrupt:
-        print("\n" + "-" * 85)
+
+    player_hp = player['HP']
+    enemy_hp = enemy.health
+
+    if player["weapon"]["type"] is not None:
+        player_dmg = player["weapon"]["stats"]["dmg"]
+        player_crit_dmg = player_dmg // 2
+        player_crit_chance = player["weapon"]["stats"]["crit_chance"]
+        player_speed = player["weapon"]["stats"]["attack_speed"]
+    else:
+        player_dmg = 5
+        player_crit_dmg = 2
+        player_crit_chance = 5
+        player_speed = 1.0
+
+    player_def = player['totalDefense']
+
+    print("\n" + "=" * 60)
+    print("⚔️  FIGHT STARTS! ⚔️".center(60))
+    print("=" * 60)
+    print(f"YOU: HP={player_hp}, DMG={player_dmg}, DEF={player_def}, SPEED={player_speed}")
+    print(f"{enemy.name.upper()}: HP={enemy_hp}, DMG={enemy.damage}, DEF={enemy.defense}, SPEED={enemy.attackSpeed}")
+    print("=" * 60)
+    input("\nPress ENTER to start...\n")
+
+    if player["weapon"]["stats"]["attack_speed"] is not None :
+        player_time = player["weapon"]["stats"]["attack_speed"]
+    else:
+        player_time = player_speed
+    enemy_time = enemy.attackSpeed
+    round_num = 1
+
+    while player_hp > 0 and enemy_hp > 0:
+        print(f"\n--- Round {round_num} ---")
+
+        if player_time <= enemy_time:
+            print(f"⚔️  YOUR TURN (time: {player_time:.2f}s)")
+
+            is_crit = random.randint(1, 100) <= player_crit_chance
+            base_dmg = player_dmg + (player_crit_dmg if is_crit else 0)
+
+            final_dmg = max(1, base_dmg - enemy.defense)
+            enemy_hp -= final_dmg
+
+            if is_crit:
+                print(f"   💥 CRITICAL HIT! Dealt {final_dmg} damage!")
+            else:
+                print(f"   Hit! Dealt {final_dmg} damage")
+            print(f"   {enemy.name} HP: {max(0, enemy_hp)}/{enemy.health}")
+
+            player_time += 1.0 / player_speed
+
+        else:
+            print(f"🗡️  {enemy.name.upper()}'S TURN (time: {enemy_time:.2f}s)")
+
+            is_crit = random.randint(1, 100) <= enemy.extraChance
+            base_dmg = enemy.damage + (enemy.extraDamage if is_crit else 0)
+
+            final_dmg = max(1, base_dmg - player_def)
+            player_hp -= final_dmg
+
+            if is_crit:
+                print(f"   💥 CRITICAL HIT! Took {final_dmg} damage!")
+            else:
+                print(f"   Hit! Took {final_dmg} damage")
+            print(f"   Your HP: {max(0, player_hp)}/{player['HP']}")
+
+            enemy_time += 1.0 / enemy.attackSpeed
+
+        round_num += 1
+
+        if player_hp > 0 and enemy_hp > 0:
+            input("Press ENTER for next action...")
+
+    print("\n" + "=" * 60)
+    if player_hp > 0:
+        print("🎉 VICTORY! 🎉".center(60))
+        print(f"You won with {player_hp} HP remaining!")
+        print(f"💰 Earned {reward} gold!")
+        player['money'] += reward
+        player['HP'] = player_hp
+    else:
+        print("💀 DEFEAT 💀".center(60))
+        print(f"{enemy.name} defeated you!")
+        player['HP'] = 20
+        print("You respawned with 20 HP")
+    print("=" * 60)
+
+    input("\nPress ENTER to continue...")
     return player
 

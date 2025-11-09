@@ -16,8 +16,8 @@ weapon = {
     "stats" : {"dmg": None, "crit_chance": None, "attack_speed": None,}
 }
 player = {
-    "HP" : 50,
-    "money" : 100,
+    "HP" : 100,
+    "money" : 100000,
     "armor" : armor,
     "weapon" : weapon,
     "totalDefense" : None,
@@ -49,7 +49,7 @@ def loadLobby():
                 player = loadArena(player)
                 return loadLobby()
             case 3:
-                player["money"], player["armor"], player["weapon"] = loadBlacksmith(player["money"], armor, weapon)
+                player["money"], player["armor"], player["weapon"] = loadBlacksmith(player["money"], player["armor"], weapon)
                 return loadLobby()
             case _:
                 print("Neplatná hodnota")

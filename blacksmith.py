@@ -2,42 +2,71 @@ import random
 
 armorList = {
     "helmet": {
-        "bronze": {"defense": 2, "price": 30},
-        "iron": {"defense": 3, "price": 50},
-        "golden": {"defense": 4, "price": 120},
-        "diamond": {"defense": 6, "price": 200}
+        "bronze": {"defense": 4, "price": 30},
+        "iron": {"defense": 7, "price": 50},
+        "steel": {"defense": 10, "price": 90},
+        "golden": {"defense": 14, "price": 120},
+        "diamond": {"defense": 18, "price": 200},
+        "legendary": {"defense": 25, "price": 350}
     },
     "chestplate": {
-        "bronze": {"defense": 4, "price": 50},
-        "iron": {"defense": 6, "price": 80},
-        "golden": {"defense": 8, "price": 180},
-        "diamond": {"defense": 10, "price": 300}
+        "bronze": {"defense": 6, "price": 50},
+        "iron": {"defense": 10, "price": 80},
+        "steel": {"defense": 15, "price": 130},
+        "golden": {"defense": 20, "price": 180},
+        "diamond": {"defense": 26, "price": 300},
+        "legendary": {"defense": 35, "price": 500}
     },
     "legins": {
-        "bronze": {"defense": 3, "price": 40},
-        "iron": {"defense": 5, "price": 70},
-        "golden": {"defense": 6, "price": 150},
-        "diamond": {"defense": 8, "price": 250}
+        "bronze": {"defense": 5, "price": 40},
+        "iron": {"defense": 9, "price": 70},
+        "steel": {"defense": 13, "price": 110},
+        "golden": {"defense": 17, "price": 150},
+        "diamond": {"defense": 22, "price": 250},
+        "legendary": {"defense": 30, "price": 400}
     },
     "boots": {
-        "bronze": {"defense": 2, "price": 25},
-        "iron": {"defense": 3, "price": 45},
-        "golden": {"defense": 4, "price": 100},
-        "diamond": {"defense": 5, "price": 180}
+        "bronze": {"defense": 4, "price": 25},
+        "iron": {"defense": 7, "price": 45},
+        "steel": {"defense": 10, "price": 75},
+        "golden": {"defense": 13, "price": 100},
+        "diamond": {"defense": 17, "price": 180},
+        "legendary": {"defense": 23, "price": 300}
     }
 }
+
 weaponsList = {
     "sword": {
-        "bronze": {"dmg": 8, "crit_chance": 5, "attack_speed": 1.6, "price": 40},
-        "iron": {"dmg": 10, "crit_chance": 8, "attack_speed": 1.6, "price": 70},
-        "golden": {"dmg": 12, "crit_chance": 12, "attack_speed": 1.8, "price": 150},
-        "diamond": {"dmg": 15, "crit_chance": 15, "attack_speed": 1.6, "price": 250}
+        "bronze": {"dmg": 12, "crit_chance": 10, "attack_speed": 1.7, "price": 40},
+        "iron": {"dmg": 20, "crit_chance": 15, "attack_speed": 1.8, "price": 70},
+        "steel": {"dmg": 30, "crit_chance": 18, "attack_speed": 1.9, "price": 120},
+        "golden": {"dmg": 42, "crit_chance": 22, "attack_speed": 2.0, "price": 150},
+        "diamond": {"dmg": 55, "crit_chance": 26, "attack_speed": 2.2, "price": 250},
+        "legendary": {"dmg": 75, "crit_chance": 30, "attack_speed": 2.5, "price": 450}
     },
     "waraxe": {
-        "bronze": {"dmg": 10, "crit_chance": 3, "attack_speed": 0.9, "price": 50},
-        "iron": {"dmg": 13, "crit_chance": 5, "attack_speed": 0.9, "price": 85},
-        "golden": {"dmg": 15, "crit_chance": 10, "attack_speed": 1.0, "price": 180},
-        "diamond": {"dmg": 18, "crit_chance": 12, "attack_speed": 1.0, "price": 300}
+        "bronze": {"dmg": 16, "crit_chance": 7, "attack_speed": 1.2, "price": 50},
+        "iron": {"dmg": 26, "crit_chance": 12, "attack_speed": 1.3, "price": 85},
+        "steel": {"dmg": 38, "crit_chance": 15, "attack_speed": 1.4, "price": 140},
+        "golden": {"dmg": 52, "crit_chance": 18, "attack_speed": 1.5, "price": 180},
+        "diamond": {"dmg": 68, "crit_chance": 22, "attack_speed": 1.7, "price": 300},
+        "legendary": {"dmg": 90, "crit_chance": 26, "attack_speed": 1.9, "price": 500}
+    },
+    "spear": {
+        "bronze": {"dmg": 14, "crit_chance": 12, "attack_speed": 1.5, "price": 45},
+        "iron": {"dmg": 23, "crit_chance": 17, "attack_speed": 1.6, "price": 75},
+        "steel": {"dmg": 34, "crit_chance": 20, "attack_speed": 1.7, "price": 130},
+        "golden": {"dmg": 47, "crit_chance": 24, "attack_speed": 1.9, "price": 170},
+        "diamond": {"dmg": 62, "crit_chance": 28, "attack_speed": 2.1, "price": 280},
+        "legendary": {"dmg": 82, "crit_chance": 32, "attack_speed": 2.3, "price": 480}
+    },
+    "dagger": {
+        "bronze": {"dmg": 8, "crit_chance": 18, "attack_speed": 2.2, "price": 35},
+        "iron": {"dmg": 14, "crit_chance": 24, "attack_speed": 2.4, "price": 65},
+        "steel": {"dmg": 22, "crit_chance": 28, "attack_speed": 2.6, "price": 115},
+        "golden": {"dmg": 32, "crit_chance": 32, "attack_speed": 2.8, "price": 145},
+        "diamond": {"dmg": 44, "crit_chance": 36, "attack_speed": 3.0, "price": 240},
+        "legendary": {"dmg": 60, "crit_chance": 40, "attack_speed": 3.3, "price": 420}
     }
 }
 weapon_list = []
@@ -212,6 +241,7 @@ def loadBlacksmith(money, armor, weapon):
             input("\nPress Enter to continue...")
             return loadBlacksmith(money, armor, weapon)
         case 4:
+            print("armor")
             return money, armor, weapon
         case _:
             print("Invalid option!")
