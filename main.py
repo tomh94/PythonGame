@@ -11,7 +11,6 @@ armor = {
     "boots": None,
 }
 
-
 weapon = {
     "type": None,
     "material": None,
