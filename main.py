@@ -1,5 +1,3 @@
-import random
-
 from arena import loadArena
 from pub import loadPub
 from blacksmith import loadBlacksmith
