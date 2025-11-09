@@ -10,14 +10,21 @@ armor = {
     "legins": None,
     "boots": None,
 }
+
+
 weapon = {
     "type": None,
     "material": None,
-    "stats" : {"dmg": None, "crit_chance": None, "attack_speed": None,}
+    "stats": {
+        "dmg": None,
+        "crit_chance": None,
+        "attack_speed": None
+    }
 }
+
 player = {
     "HP" : 100,
-    "money" : 100000,
+    "money" : 100,
     "armor" : armor,
     "weapon" : weapon,
     "totalDefense" : None,

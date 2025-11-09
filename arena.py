@@ -15,49 +15,47 @@ class Enemy:
         self.loot = loot
 
 # LEVEL 1-5: Začátečníci
-rat = Enemy("Rat", 15, 3, 2, 3, 0.8, 0, 5)
-spider = Enemy("Spider", 20, 5, 3, 5, 1.0, 1, 8)
-snake = Enemy("Snake", 25, 6, 4, 7, 1.1, 1, 12)
-wolf = Enemy("Wolf", 30, 8, 5, 9, 1.3, 2, 15)
-bandit = Enemy("Bandit", 35, 10, 6, 11, 1.2, 3, 20)
+rat = Enemy("Rat", 15, 3, 2, 5, 2.5, 0, 5)  # Rychlý, slabý útok
+spider = Enemy("Spider", 18, 4, 6, 15, 1.8, 2, 8)  # Rychlý s jedem (vyšší crit)
+snake = Enemy("Snake", 22, 5, 8, 20, 1.6, 1, 12)  # Střední rychlost, jedovaté údery
+wolf = Enemy("Wolf", 28, 7, 5, 12, 2.2, 3, 15)  # Rychlý predátor
+bandit = Enemy("Bandit", 35, 9, 7, 10, 1.4, 5, 20)  # Vyvážený s lehkou zbrojí
 
 # LEVEL 6-10: Lehcí
-goblin = Enemy("Goblin", 40, 12, 7, 12, 1.4, 4, 25)
-skeleton = Enemy("Skeleton", 45, 14, 8, 13, 1.3, 5, 30)
-zombie = Enemy("Zombie", 50, 15, 9, 14, 1.0, 6, 35)
-wild_boar = Enemy("Wild Boar", 55, 16, 10, 13, 1.5, 5, 40)
-dark_cultist = Enemy("Dark Cultist", 60, 18, 11, 15, 1.4, 6, 50)
+goblin = Enemy("Goblin", 38, 10, 6, 18, 2.0, 4, 25)  # Rychlý, zákeřný
+skeleton = Enemy("Skeleton", 42, 11, 9, 8, 1.2, 8, 30)  # Pomalý, odolný
+zombie = Enemy("Zombie", 55, 13, 5, 5, 0.8, 10, 35)  # Velmi pomalý tank
+wild_boar = Enemy("Wild Boar", 50, 15, 10, 15, 1.9, 6, 40)  # Agresivní útočník
+dark_cultist = Enemy("Dark Cultist", 45, 16, 12, 20, 1.3, 7, 50)  # Magické útoky
 
 # LEVEL 11-15: Střední
-orc = Enemy("Orc", 70, 20, 12, 16, 1.6, 8, 60)
-ghoul = Enemy("Ghoul", 75, 22, 13, 17, 1.5, 7, 70)
-harpy = Enemy("Harpy", 80, 24, 14, 18, 1.8, 6, 80)
-troll = Enemy("Troll", 90, 26, 15, 17, 1.4, 10, 95)
-wraith = Enemy("Wraith", 85, 28, 16, 19, 1.7, 8, 100)
+orc = Enemy("Orc", 75, 18, 12, 14, 1.5, 12, 60)  # Silný válečník
+ghoul = Enemy("Ghoul", 65, 20, 15, 22, 1.7, 9, 70)  # Rychlý s vysokým critem
+harpy = Enemy("Harpy", 60, 17, 10, 25, 2.3, 5, 80)  # Velmi rychlá, křehká
+troll = Enemy("Troll", 100, 22, 8, 10, 1.1, 18, 95)  # Pomalý tank s regenerací
+wraith = Enemy("Wraith", 70, 24, 18, 28, 1.6, 8, 100)  # Rychlý assassin
 
 # LEVEL 16-20: Pokročilí
-werewolf = Enemy("Werewolf", 100, 30, 18, 20, 1.9, 10, 120)
-minotaur = Enemy("Minotaur", 110, 32, 20, 19, 1.6, 12, 140)
-vampire = Enemy("Vampire", 105, 35, 22, 21, 1.8, 11, 160)
-ogre = Enemy("Ogre", 130, 38, 24, 18, 1.5, 15, 180)
-dark_knight = Enemy("Dark Knight", 120, 40, 25, 20, 1.7, 14, 200)
+werewolf = Enemy("Werewolf", 95, 26, 16, 24, 2.1, 11, 120)  # Agresivní bestie
+minotaur = Enemy("Minotaur", 120, 30, 20, 18, 1.4, 16, 140)  # Silný, pomalý berserk
+vampire = Enemy("Vampire", 90, 28, 22, 30, 1.9, 10, 160)  # Rychlý s life stealem
+ogre = Enemy("Ogre", 140, 32, 15, 12, 1.2, 22, 180)  # Masivní tank
+dark_knight = Enemy("Dark Knight", 110, 35, 25, 20, 1.6, 20, 200)  # Těžká zbroj
 
 # LEVEL 21-25: Těžcí
-demon = Enemy("Demon", 150, 45, 28, 22, 1.9, 16, 250)
-chimera = Enemy("Chimera", 160, 48, 30, 23, 1.8, 17, 280)
-frost_giant = Enemy("Frost Giant", 180, 50, 32, 21, 1.6, 20, 320)
-lich = Enemy("Lich", 140, 55, 35, 24, 1.7, 15, 350)
-hydra = Enemy("Hydra", 200, 52, 34, 22, 1.8, 18, 400)
+demon = Enemy("Demon", 130, 38, 28, 26, 1.8, 15, 250)  # Rychlý démontický útočník
+chimera = Enemy("Chimera", 150, 40, 30, 22, 1.7, 18, 280)  # Vícehlavá bestie
+frost_giant = Enemy("Frost Giant", 180, 42, 25, 16, 1.3, 28, 320)  # Obrovský tank
+lich = Enemy("Lich", 110, 48, 35, 32, 1.5, 12, 350)  # Nekromant - vysoký damage
+hydra = Enemy("Hydra", 200, 36, 28, 20, 2.0, 25, 400)  # Mnoho útoků, odolná
 
 # LEVEL 26-30: BOSSES
-dragon = Enemy("Dragon", 250, 60, 40, 25, 2.0, 22, 500)
-ancient_demon = Enemy("Ancient Demon", 280, 65, 45, 25, 2.1, 24, 600)
-death_knight = Enemy("Death Knight", 300, 70, 48, 24, 1.9, 28, 700)
-archdemon = Enemy("Archdemon", 320, 75, 50, 25, 2.2, 26, 850)
-dark_lord = Enemy("Dark Lord", 400, 80, 60, 25, 2.0, 30, 1000)
+dragon = Enemy("Dragon", 250, 50, 40, 28, 1.8, 30, 500)  # Legendární drak
+ancient_demon = Enemy("Ancient Demon", 220, 58, 45, 30, 2.0, 25, 600)  # Rychlý démon lord
+death_knight = Enemy("Death Knight", 280, 55, 38, 22, 1.4, 35, 700)  # Nemrtvý válečník
+archdemon = Enemy("Archdemon", 260, 62, 48, 32, 1.9, 28, 850)  # Nejvyšší démon
+dark_lord = Enemy("Dark Lord", 350, 65, 55, 26, 1.5, 40, 1000)
 
-
-# Seznam všech nepřátel pro snadný přístup
 enemies_list = [
     # Level 1-5
     rat, spider, snake, wolf, bandit,
@@ -72,7 +70,6 @@ enemies_list = [
     # Level 26-30
     dragon, ancient_demon, death_knight, archdemon, dark_lord
 ]
-
 
 def showAllEnemies():
     print("\n" + "=" * 85)
@@ -144,12 +141,12 @@ def fightEnemy(enemy, player):
 
     if player["weapon"]["type"] is not None:
         player_dmg = player["weapon"]["stats"]["dmg"]
-        player_crit_dmg = player_dmg // 2
+        player_crit_dmg = player_dmg * 1.3
         player_crit_chance = player["weapon"]["stats"]["crit_chance"]
         player_speed = player["weapon"]["stats"]["attack_speed"]
     else:
         player_dmg = 5
-        player_crit_dmg = 2
+        player_crit_dmg = 7
         player_crit_chance = 5
         player_speed = 1.0
 
@@ -164,10 +161,10 @@ def fightEnemy(enemy, player):
     input("\nPress ENTER to start...\n")
 
     if player["weapon"]["stats"]["attack_speed"] is not None :
-        player_time = player["weapon"]["stats"]["attack_speed"]
+        player_time = 1/player["weapon"]["stats"]["attack_speed"]
     else:
-        player_time = player_speed
-    enemy_time = enemy.attackSpeed
+        player_time = 1/player_speed
+    enemy_time = 1/enemy.attackSpeed
     round_num = 1
 
     while player_hp > 0 and enemy_hp > 0:
@@ -179,7 +176,7 @@ def fightEnemy(enemy, player):
             is_crit = random.randint(1, 100) <= player_crit_chance
             base_dmg = player_dmg + (player_crit_dmg if is_crit else 0)
 
-            final_dmg = max(1, base_dmg - enemy.defense)
+            final_dmg = max(1, base_dmg * (1-(enemy.defense/100)))
             enemy_hp -= final_dmg
 
             if is_crit:
@@ -196,7 +193,7 @@ def fightEnemy(enemy, player):
             is_crit = random.randint(1, 100) <= enemy.extraChance
             base_dmg = enemy.damage + (enemy.extraDamage if is_crit else 0)
 
-            final_dmg = max(1, base_dmg - player_def)
+            final_dmg = max(1, base_dmg * (1-(player_def/100)))
             player_hp -= final_dmg
 
             if is_crit:

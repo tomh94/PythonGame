@@ -2,36 +2,36 @@ import random
 
 armorList = {
     "helmet": {
-        "bronze": {"defense": 4, "price": 30},
-        "iron": {"defense": 7, "price": 50},
-        "steel": {"defense": 10, "price": 90},
-        "golden": {"defense": 14, "price": 120},
-        "diamond": {"defense": 18, "price": 200},
-        "legendary": {"defense": 25, "price": 350}
+        "bronze": {"defense": 3, "price": 30},
+        "iron": {"defense": 5, "price": 50},
+        "steel": {"defense": 7, "price": 90},
+        "golden": {"defense": 9, "price": 120},
+        "diamond": {"defense": 12, "price": 200},
+        "legendary": {"defense": 15, "price": 350}
     },
     "chestplate": {
-        "bronze": {"defense": 6, "price": 50},
-        "iron": {"defense": 10, "price": 80},
-        "steel": {"defense": 15, "price": 130},
-        "golden": {"defense": 20, "price": 180},
-        "diamond": {"defense": 26, "price": 300},
-        "legendary": {"defense": 35, "price": 500}
+        "bronze": {"defense": 5, "price": 50},
+        "iron": {"defense": 8, "price": 80},
+        "steel": {"defense": 11, "price": 130},
+        "golden": {"defense": 14, "price": 180},
+        "diamond": {"defense": 18, "price": 300},
+        "legendary": {"defense": 22, "price": 500}
     },
     "legins": {
-        "bronze": {"defense": 5, "price": 40},
-        "iron": {"defense": 9, "price": 70},
-        "steel": {"defense": 13, "price": 110},
-        "golden": {"defense": 17, "price": 150},
-        "diamond": {"defense": 22, "price": 250},
-        "legendary": {"defense": 30, "price": 400}
+        "bronze": {"defense": 4, "price": 40},
+        "iron": {"defense": 7, "price": 70},
+        "steel": {"defense": 9, "price": 110},
+        "golden": {"defense": 11, "price": 150},
+        "diamond": {"defense": 14, "price": 250},
+        "legendary": {"defense": 18, "price": 400}
     },
     "boots": {
-        "bronze": {"defense": 4, "price": 25},
-        "iron": {"defense": 7, "price": 45},
-        "steel": {"defense": 10, "price": 75},
-        "golden": {"defense": 13, "price": 100},
-        "diamond": {"defense": 17, "price": 180},
-        "legendary": {"defense": 23, "price": 300}
+        "bronze": {"defense": 3, "price": 25},
+        "iron": {"defense": 5, "price": 45},
+        "steel": {"defense": 7, "price": 75},
+        "golden": {"defense": 9, "price": 100},
+        "diamond": {"defense": 11, "price": 180},
+        "legendary": {"defense": 14, "price": 300}
     }
 }
 
@@ -84,15 +84,6 @@ blacksmith_sayings = [
 ]
 todaysQuote = random.choice(blacksmith_sayings)
 
-def showArmor(armor):
-    for key, name, in armor.items():
-        print(f"{key}: {name}")
-
-def showWeapons(weapon):
-    for key, name, in weapon.items():
-        print(f"{key}: {name}")
-
-
 def showWeaponsList(weaponsList, money, weapon, armor):
     print("\n=== BLACKSMITH'S WEAPONS ===\n")
     print(" ********* you have", money, " golds\n")
@@ -132,7 +123,6 @@ def showWeaponsList(weaponsList, money, weapon, armor):
         print("You don't have enough golds.")
         input("Press Enter to continue...")
         return showWeaponsList(weaponsList, money, weapon, armor)
-
 
 def showCurrentArmor(armor, weapon):
     print("\n=== YOUR CURRENT ARMOR ===\n")
