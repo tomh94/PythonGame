@@ -5,19 +5,41 @@ from pub import loadPub
 from blacksmith import loadBlacksmith
 
 armor = {
-    "helmet": None,
-    "chestplate": None,
-    "legins": None,
-    "boots": None,
+    "helmet": {
+        "type": "helmet",
+        "material": "legendary",
+        "stats": {"defense": 15}
+    },
+    "chestplate": {
+        "type": "chestplate",
+        "material": "legendary",
+        "stats": {"defense": 22}
+    },
+    "legins": {
+        "type": "legins",
+        "material": "legendary",
+        "stats": {"defense": 18}
+    },
+    "boots": {
+        "type": "boots",
+        "material": "legendary",
+        "stats": {"defense": 14}
+    }
 }
+
 weapon = {
-    "type": None,
-    "material": None,
-    "stats" : {"dmg": None, "crit_chance": None, "attack_speed": None,}
+    "type": "waraxe",
+    "material": "legendary",
+    "stats": {
+        "dmg": 90,
+        "crit_chance": 26,
+        "attack_speed": 1.9
+    }
 }
+
 player = {
     "HP" : 100,
-    "money" : 100000,
+    "money" : 100,
     "armor" : armor,
     "weapon" : weapon,
     "totalDefense" : None,
