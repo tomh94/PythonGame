@@ -94,6 +94,7 @@ def showWeaponsList(weaponsList, money, weapon, armor):
     counter = 1
     weapon_list = []
     for weapon_type, materials in weaponsList.items():
+        print("\n")
         for material, stats in materials.items():
             weapon_list.append({
                 "type": weapon_type,
