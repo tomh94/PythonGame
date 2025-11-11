@@ -1,6 +1,5 @@
 import random
 
-
 def loadPub(HP, money):
     tavern_sayings = [
         "Three heroes walked in yesterday. I'm selling their boots tomorrow.",
@@ -26,7 +25,12 @@ def loadPub(HP, money):
           "3. Talk to bartender\n"
           "4. Back to Lobby")
 
-    choice = int(input("\n"))
+    try :
+        choice = int(input("\n"))
+    except ValueError:
+        print("Špatná hodnota!")
+        return loadPub(HP, money)
+
     match choice:
         case 1:
             if HP == 100:

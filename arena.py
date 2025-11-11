@@ -83,12 +83,15 @@ def showAllEnemies():
               f"{enemy.attackSpeed:<8} {enemy.defense:<8} {enemy.loot:<8}")
     print("=" * 85)
 
-    number =  int(input("Enter yours enemy number: "))
+    try :
+        number =  int(input("Enter yours enemy number: "))
+    except ValueError:
+        print("neplatná hodnota")
+        return None
     if number == 0 :
         return None
     if 1 <= number <= len(enemies_list):
         return enemies_list[number - 1]
-    showAllEnemies()
     return None
 
 
@@ -113,7 +116,7 @@ def loadArena(player):
     match(choice):
         case 1:
             yourEnemy = showAllEnemies()
-            player = fightEnemy(yourEnemy, player)
+            if yourEnemy is not None : player = fightEnemy(yourEnemy, player)
             return loadArena(player)
         case 2:
             return player
